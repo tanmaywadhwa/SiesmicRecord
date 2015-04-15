@@ -28,6 +28,10 @@
             android:label="@string/title_activity_recording"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".Calibrating"
+            android:label="@string/title_activity_calibrating" >
+        </activity>
     </application>
 
 </manifest>

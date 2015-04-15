@@ -20,11 +20,14 @@ public class MainActivity extends Activity {
         startButton=(Button) findViewById(R.id.button1);
     }
     
+//    public void startRecording(View view){
+//        Intent openRecording=new Intent(this,Recording.class);
+//        startActivity(openRecording);
+//    }
     public void startRecording(View view){
-        Intent openRecording=new Intent(this,Recording.class);
+        Intent openRecording=new Intent(this,Calibrating.class);
         startActivity(openRecording);
-    }
-    
+    }    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
