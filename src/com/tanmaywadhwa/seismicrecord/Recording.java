@@ -24,7 +24,9 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 public class Recording extends Activity implements SensorEventListener {
-    
+	
+	public float x, y, z;
+    public float calx, caly, calz;
     public static final String TAG="Seismic";
     private SensorManager mSensorManager;
     Sensor acceleration;
@@ -64,6 +66,8 @@ public class Recording extends Activity implements SensorEventListener {
         t=Toast.makeText(this, "Found a sensor that can be used", Toast.LENGTH_LONG);
         t.show();
         
+        
+       
     }
 
     @Override
@@ -89,13 +93,17 @@ public class Recording extends Activity implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         // TODO Auto-generated method stub
         //Log.i(TAG,""+event.values[0]);
+    	
+    	x=calx+event.values[0] + 0;
+    	y=caly+event.values[1] + 10;
+    	z=calz+event.values[2] - 10;
         count++;
-        xTV.setText(""+event.values[0]);
-        xTimeSeries.add(count, event.values[0]);
-        yTV.setText(""+event.values[1]);
-        yTimeSeries.add(count, event.values[1]);
-        zTV.setText(""+event.values[2]);
-        zTimeSeries.add(count, event.values[2]);
+        xTV.setText("x: "+x);
+        xTimeSeries.add(count, x);
+        yTV.setText("y:"+y);
+        yTimeSeries.add(count, y);
+        zTV.setText("z:"+z);
+        zTimeSeries.add(count, z);
         if(count<250)
             mRenderer.setXAxisMin(0);
         else
@@ -116,6 +124,11 @@ public class Recording extends Activity implements SensorEventListener {
         // TODO Auto-generated method stub
         super.onResume();
         mSensorManager.registerListener(this, acceleration, SensorManager.SENSOR_DELAY_UI);
+        
+        //// Taking calibration values
+        calx=-x;
+        caly=-y;
+        calz=-z;
         
         if (mChart == null) {
             initChart();
