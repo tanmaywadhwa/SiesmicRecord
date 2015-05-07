@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 public class Calibrating extends Activity {
 
-	private static final long SPLASH_TIME = 3000; //3 seconds
+	private static final long SPLASH_TIME = 1000; //3 seconds
 	Handler mHandler;
 	Runnable mJumpRunnable;
 	

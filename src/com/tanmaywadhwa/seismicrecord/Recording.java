@@ -56,6 +56,9 @@ public class Recording extends Activity implements SensorEventListener {
         zTV= (TextView)findViewById(R.id.textView3);
         mSensorManager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         acceleration=mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        calx=-x;
+        caly=-y;
+        calz=-z;
         if(acceleration==null){
             Toast t=new Toast(this);
             t=Toast.makeText(this, "Required Sensor not Found!", Toast.LENGTH_LONG);
@@ -93,16 +96,32 @@ public class Recording extends Activity implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         // TODO Auto-generated method stub
         //Log.i(TAG,""+event.values[0]);
-    	
+    	if(calx==0.0 && caly==0.0 && calz==0.0){
+            calx=-event.values[0];
+            caly=-event.values[1];
+            calz=-event.values[2];
+        }
+
+
     	x=calx+event.values[0] + 0;
-    	y=caly+event.values[1] + 10;
-    	z=calz+event.values[2] - 10;
+    	y=caly+event.values[1] + 2;
+    	z=calz+event.values[2] - 2;
+
+        ///////////////////////
+
+        x=(float)((x>0)?x-0.1:x+0.1);
+        y=(float)((y>2)?y-0.1:y+0.1);
+        z=(float)((z>-2)?z-0.1:z+0.1);
+
+        ///////////////////////
+
+
         count++;
         xTV.setText("x: "+x);
         xTimeSeries.add(count, x);
-        yTV.setText("y:"+y);
+        yTV.setText("y:"+(y-2));
         yTimeSeries.add(count, y);
-        zTV.setText("z:"+z);
+        zTV.setText("z:"+(z+2));
         zTimeSeries.add(count, z);
         if(count<250)
             mRenderer.setXAxisMin(0);
@@ -126,9 +145,9 @@ public class Recording extends Activity implements SensorEventListener {
         mSensorManager.registerListener(this, acceleration, SensorManager.SENSOR_DELAY_UI);
         
         //// Taking calibration values
-        calx=-x;
-        caly=-y;
-        calz=-z;
+        calx=(float)0.0;
+        caly=(float)0.0;
+        calz=(float)0.0;
         
         if (mChart == null) {
             initChart();
@@ -153,7 +172,7 @@ public class Recording extends Activity implements SensorEventListener {
         xRenderer = new XYSeriesRenderer();
         yRenderer = new XYSeriesRenderer();
         zRenderer = new XYSeriesRenderer();
-        xRenderer.setColor(Color.GREEN);
+        xRenderer.setColor(Color.DKGRAY);
         yRenderer.setColor(Color.BLUE);
         zRenderer.setColor(Color.RED);
         
