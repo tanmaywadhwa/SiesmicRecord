@@ -104,33 +104,24 @@ public class Recording extends Activity implements SensorEventListener {
 
 
     	x=calx+event.values[0] + 0;
-    	y=caly+event.values[1] + 2;
-    	z=calz+event.values[2] - 2;
+    	y=caly+event.values[1] + 5;
+    	z=calz+event.values[2] - 5;
 
-        ///////////////////////
 
-        x=(float)((x>0)?x-0.1:x+0.1);
-        y=(float)((y>2)?y-0.1:y+0.1);
-        z=(float)((z>-2)?z-0.1:z+0.1);
-
-        ///////////////////////
 
 
         count++;
         xTV.setText("x: "+x);
         xTimeSeries.add(count, x);
-        yTV.setText("y:"+(y-2));
+        yTV.setText("y:"+(y-5));
         yTimeSeries.add(count, y);
-        zTV.setText("z:"+(z+2));
+        zTV.setText("z:"+(z+5));
         zTimeSeries.add(count, z);
-        if(count<250){
-            mRenderer.setXAxisMin(0);
-            mRenderer.setXAxisMax(250);
-        }
-        else{
-            mRenderer.setXAxisMin(count-250);
-            mRenderer.setXAxisMax(count);
-        }
+        
+        mRenderer.setXAxisMin(count-250);
+        mRenderer.setXAxisMax(count);
+        
+
         mChart.repaint();
         
     }
@@ -185,6 +176,9 @@ public class Recording extends Activity implements SensorEventListener {
         mRenderer.setZoomEnabled(false,true);
         mRenderer.setPanEnabled(true, false);
         mRenderer.setClickEnabled(false);
+        mRenderer.setChartTitle("Motion Detection");
+        mRenderer.setYAxisMin(-10);
+        mRenderer.setYAxisMax(10);
 
     }
     
