@@ -160,6 +160,7 @@ public class Recording extends Activity implements SensorEventListener {
         xTimeSeries = new XYSeries("x");
         yTimeSeries = new XYSeries("y");
         zTimeSeries = new XYSeries("z");
+        int margins[] = new int[] {2,2,2,2};
         mDataset.addSeries(xTimeSeries);
         mDataset.addSeries(yTimeSeries);
         mDataset.addSeries(zTimeSeries);
@@ -179,6 +180,9 @@ public class Recording extends Activity implements SensorEventListener {
         mRenderer.setChartTitle("Graphical Motion Representation");
         mRenderer.setYAxisMin(-10);
         mRenderer.setYAxisMax(10);
+        mRenderer.setLabelsTextSize(20);
+        mRenderer.setMargins(margins);
+        mRenderer.setLegendHeight(1);
 
     }
     
