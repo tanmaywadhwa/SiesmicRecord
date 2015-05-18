@@ -176,7 +176,7 @@ public class Recording extends Activity implements SensorEventListener {
         mRenderer.setZoomEnabled(false,true);
         mRenderer.setPanEnabled(true, false);
         mRenderer.setClickEnabled(false);
-        mRenderer.setChartTitle("Motion Detection");
+        mRenderer.setChartTitle("Graphical Motion Representation");
         mRenderer.setYAxisMin(-10);
         mRenderer.setYAxisMax(10);
 
