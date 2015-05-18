@@ -123,11 +123,14 @@ public class Recording extends Activity implements SensorEventListener {
         yTimeSeries.add(count, y);
         zTV.setText("z:"+(z+2));
         zTimeSeries.add(count, z);
-        if(count<250)
+        if(count<250){
             mRenderer.setXAxisMin(0);
-        else
+            mRenderer.setXAxisMax(250);
+        }
+        else{
             mRenderer.setXAxisMin(count-250);
-        mRenderer.setXAxisMax(count);
+            mRenderer.setXAxisMax(count);
+        }
         mChart.repaint();
         
     }
