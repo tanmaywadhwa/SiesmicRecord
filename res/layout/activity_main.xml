@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="81dp"
-        android:text="Press start to begin recording!" />
+        android:text="Press start to begin monitoring!" />
 
     <Button
         android:id="@+id/button1"

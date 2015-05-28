@@ -66,7 +66,7 @@ public class Recording extends Activity implements SensorEventListener {
             System.exit(1);
         }
         Toast t=new Toast(this);
-        t=Toast.makeText(this, "Found a sensor that can be used", Toast.LENGTH_LONG);
+        t=Toast.makeText(this, "Found a sensor, starting motion monitoring!", Toast.LENGTH_LONG);
         t.show();
         
         
@@ -111,11 +111,12 @@ public class Recording extends Activity implements SensorEventListener {
 
 
         count++;
-        xTV.setText("x: "+x);
+        xTV.setText(""+String.format("%.3f", x));
         xTimeSeries.add(count, x);
-        yTV.setText("y:"+(y-5));
+        yTV.setText(""+String.format("%.2f", (y-5)));
         yTimeSeries.add(count, y);
-        zTV.setText("z:"+(z+5));
+        zTV.setText(""+ String.format("%.2f",(z+5)));
+        
         zTimeSeries.add(count, z);
         
         mRenderer.setXAxisMin(count-250);
